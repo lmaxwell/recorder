@@ -161,18 +161,9 @@ class Recorder extends Component {
     const { recording, audios, time, medianotFound, uploaded, upload_response  } = this.state;
     const { showUIAudio, title, audioURL } = this.props;
     return (
-      <div className="recorder-library-box">
-        <div className="recorder-box">
-          <div className="recorder-box-inner">
-            <div className="reco-header">
-              <h2>{title}</h2>
-              <span className="close-icons">
-                <FaTimes />
-              </span>
-            </div>
-            {!medianotFound ? (
-              <div className="record-section">
-                <div className="btn-wrapper">
+
+            <div>
+                  <div>
                   <button
                     onClick={() =>
                       this.handleAudioUpload(this.state.audioBlob)
@@ -181,15 +172,18 @@ class Recorder extends Component {
                   >
                     Upload
                   </button>
+                  </div>
+
+                  <div>
                   <button
                     onClick={() => this.handleRest()}
                     className="btn clear-btn"
                   >
                     Clear
                   </button>
-                </div>
-                <div className="duration-section">
-                  <div className="audio-section">
+                  </div>
+
+                  <div>
                     {audioURL !== null && showUIAudio ? (
                       <audio controls>
                         <source src={audios[0]} type="audio/ogg" />
@@ -217,10 +211,12 @@ class Recorder extends Component {
                         : "00"}
                     </span>
                   </div>
+                  <div>
                   {!recording ? (
                     <p className="help">Press the microphone to record</p>
                   ) : null}
                 </div>
+                <div>
                 {!recording ? (
                   <a
                     onClick={e => this.startRecording(e)}
@@ -230,7 +226,7 @@ class Recorder extends Component {
                     <FaMicrophone />
                   </a>
                 ) : (
-                  <div className="record-controller">
+           
                     <a
                       onClick={e => this.stopRecording(e)}
                       href=" #"
@@ -238,29 +234,9 @@ class Recorder extends Component {
                     >
                       <FaStop />
                     </a>
-                    {/*
-                    <a
-                      onClick={
-                        !pauseRecord
-                          ? e => this.handleAudioPause(e)
-                          : e => this.handleAudioStart(e)
-                      }
-                      href=" #"
-                      className="icons pause"
-                    >/}
-                      {pauseRecord ? <FaPlay /> : <FaPause />}
-                    </a> */}
-                  </div>
                 )}
-              </div>
-            ) : (
-              <p style={{ color: "#fff", marginTop: 30, fontSize: 25 }}>
-                Seems the site is Non-SSL
-              </p>
-            )}
-          </div>
+               </div>
         </div>
-      </div>
     );
   }
 }
